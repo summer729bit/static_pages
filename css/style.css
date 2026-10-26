@@ -618,7 +618,7 @@ body.menu-open .site-header::after { opacity: 0; }
   padding: 0 1.9rem;
   border: 1px solid rgba(20, 18, 15, 0.42);
   border-radius: 7px;
-  background: rgba(241, 236, 226, 0.85);
+  background: rgba(246, 244, 238, 0.9);
   box-shadow: 0 8px 18px -12px rgba(20, 18, 15, 0.45);
   font-family: var(--display);
   font-size: 0.9rem;
