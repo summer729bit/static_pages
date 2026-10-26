@@ -35,6 +35,17 @@
     menu.setAttribute("aria-hidden", open ? "false" : "true");
     if (menuLabel) menuLabel.textContent = open ? "Close" : "Menu";
 
+    /* Where the label text is rendered it is the button's name, so drop the
+       aria-label or the two disagree. Where the label is hidden, the
+       aria-label carries the name and has to track the same words. */
+    var labelRendered = menuLabel && menuLabel.offsetParent !== null;
+    if (labelRendered) {
+      menuBtn.removeAttribute("aria-label");
+      menuBtn.removeAttribute("title");
+    } else {
+      menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
     if (open) {
       lastFocused = doc.activeElement;
       if ("inert" in menu) menu.inert = false;
@@ -58,6 +69,21 @@
   /* The panel starts closed, so it starts out of the tab order. */
   if (menu && "inert" in menu) menu.inert = true;
 
+  /* Name the button correctly for whatever the current breakpoint renders,
+     and keep it correct across the moment the label appears or disappears. */
+  function syncMenuButtonName() {
+    if (!menuBtn) return;
+    var open = menuIsOpen();
+    var labelRendered = menuLabel && menuLabel.offsetParent !== null;
+    if (labelRendered) {
+      menuBtn.removeAttribute("aria-label");
+    } else {
+      menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+  }
+  syncMenuButtonName();
+  window.addEventListener("resize", syncMenuButtonName, { passive: true });
+
   if (menuBtn) {
     menuBtn.addEventListener("click", function () {
       setMenu(!menuIsOpen());
@@ -69,7 +95,20 @@
       var node = event.target;
       if (!node || node.nodeType !== 1) return;
       var link = node.closest("a");
-      if (link) setMenu(false);
+      if (!link) return;
+      setMenu(false);
+
+      /* Closing the panel returns focus to the menu button. When the click was
+         a jump within the page, move the caret to the destination instead so
+         the next Tab continues from the section the user just asked for. */
+      var href = link.getAttribute("href") || "";
+      if (href.charAt(0) !== "#" || href.length < 2) return;
+      var target = doc.getElementById(href.slice(1));
+      if (!target) return;
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      window.setTimeout(function () {
+        target.focus({ preventScroll: true });
+      }, 0);
     });
   }
 
