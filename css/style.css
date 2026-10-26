@@ -882,7 +882,11 @@ body.menu-open .site-header::after { opacity: 0; }
   .hero__foot { display: none; }
 
   .menu { padding-top: calc(var(--header-h) + 3vh); }
-  .menu__label { font-size: clamp(1.7rem, 8.4vw, 2.4rem); }
+  /* Small enough that "Contemporary Design" stays on one line on a phone.
+     The extra row padding keeps every link at a comfortable tap size. */
+  .menu__label { font-size: clamp(1.1rem, 6vw, 1.85rem); }
+  .menu__num { font-size: 0.58rem; }
+  .menu__nav a { padding: 0.72rem 0; }
   .menu__foot { font-size: 0.7rem; }
 
   /* Cards sit on the paper like slides on a table ------------------------- */
