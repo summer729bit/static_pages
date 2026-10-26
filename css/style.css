@@ -33,13 +33,15 @@
 }
 
 :root {
-  --paper: #f8f5ef;
-  --paper-deep: #f1ece2;
+  /* Whiter eggshell: the page reads as near-white, with just enough warmth
+     left in the red/blue split to keep it from looking clinical. */
+  --paper: #fcfbf8;
+  --paper-deep: #f2efe9;
   --ink: #14120f;
   --ink-soft: #3d3a34;
   --muted: #6a6359;
   --line: rgba(20, 18, 15, 0.14);
-  --line-light: rgba(248, 245, 239, 0.28);
+  --line-light: rgba(252, 251, 248, 0.28);
   --night: #0b0a09;
   --display: "Hedvig Letters Serif", "Songti SC", "Noto Serif SC", Georgia, "Times New Roman", serif;
   --text: "PT Serif", "Songti SC", "Noto Serif SC", Georgia, serif;
@@ -331,8 +333,8 @@ body.menu-open .site-header::after { opacity: 0; }
   justify-content: center;
   padding: calc(var(--header-h) + 3vh) var(--gutter) clamp(1.6rem, 4vh, 2.6rem);
   background:
-    radial-gradient(120% 90% at 50% 6%, #fdfbf7 0%, rgba(253, 251, 247, 0) 58%),
-    linear-gradient(180deg, #faf7f1 0%, var(--paper) 62%, #f4efe6 100%);
+    radial-gradient(120% 90% at 50% 6%, #ffffff 0%, rgba(255, 255, 255, 0) 58%),
+    linear-gradient(180deg, #fdfcf9 0%, var(--paper) 62%, #f9f8f4 100%);
   overflow: hidden;
 }
 .hero::before {
@@ -464,8 +466,8 @@ body.menu-open .site-header::after { opacity: 0; }
 .chapter__veil { position: absolute; inset: 0; }
 .chapter--period .chapter__veil {
   background:
-    linear-gradient(90deg, rgba(248, 245, 239, 0.97) 0%, rgba(248, 245, 239, 0.94) 30%, rgba(248, 245, 239, 0.72) 46%, rgba(248, 245, 239, 0.12) 66%, rgba(248, 245, 239, 0) 82%),
-    linear-gradient(180deg, rgba(248, 245, 239, 0.5), rgba(248, 245, 239, 0) 30%);
+    linear-gradient(90deg, rgba(252, 251, 248, 0.97) 0%, rgba(252, 251, 248, 0.94) 30%, rgba(252, 251, 248, 0.72) 46%, rgba(252, 251, 248, 0.12) 66%, rgba(252, 251, 248, 0) 82%),
+    linear-gradient(180deg, rgba(252, 251, 248, 0.5), rgba(252, 251, 248, 0) 30%);
 }
 .chapter--stones .chapter__veil {
   background:
@@ -563,8 +565,8 @@ body.menu-open .site-header::after { opacity: 0; }
   position: relative;
   padding: clamp(6rem, 16vh, 11rem) var(--gutter) clamp(6rem, 14vh, 9rem);
   background:
-    radial-gradient(90% 70% at 50% 30%, #fdfbf7 0%, rgba(253, 251, 247, 0) 60%),
-    linear-gradient(180deg, var(--paper) 0%, #f4efe6 100%);
+    radial-gradient(90% 70% at 50% 30%, #ffffff 0%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(180deg, var(--paper) 0%, #f9f8f4 100%);
   text-align: center;
 }
 .contact::before {
@@ -651,7 +653,7 @@ body.menu-open .site-header::after { opacity: 0; }
 
 /* Footer ----------------------------------------------------------------- */
 .footer {
-  background: #f4efe6;
+  background: #f9f8f4;
   padding: 0 var(--gutter);
 }
 .footer__inner {
@@ -810,8 +812,8 @@ body.menu-open .site-header::after { opacity: 0; }
 
   .chapter--period .chapter__veil {
     background:
-      linear-gradient(96deg, rgba(246, 241, 232, 0.96) 0%, rgba(246, 241, 232, 0.94) 46%, rgba(246, 241, 232, 0.62) 66%, rgba(246, 241, 232, 0.06) 92%),
-      linear-gradient(180deg, rgba(246, 241, 232, 0.35), rgba(246, 241, 232, 0) 34%);
+      linear-gradient(96deg, rgba(251, 249, 244, 0.96) 0%, rgba(251, 249, 244, 0.94) 46%, rgba(251, 249, 244, 0.62) 66%, rgba(251, 249, 244, 0.06) 92%),
+      linear-gradient(180deg, rgba(251, 249, 244, 0.35), rgba(251, 249, 244, 0) 34%);
   }
   .chapter--stones .chapter__veil {
     background:
@@ -917,7 +919,8 @@ body.menu-open .site-header::after { opacity: 0; }
     align-items: stretch;
   }
 
-  .chapter--period { background: #efe9df; }
+  /* Card fields. Period's shade is set further down with its veil, so the
+     band and the field feather into one another. */
   .chapter--stones { background: #7d0526; }
   .chapter--design { background: #050505; }
 
@@ -966,10 +969,14 @@ body.menu-open .site-header::after { opacity: 0; }
   }
 
   /* Period: the band is pure photograph now; the copy lives on the field
-     below, so the veil only softens the handover into that field. */
+     below, so the veil only softens the handover into that field.
+     The field is pulled most of the way to page white — the photo's own foot
+     is far warmer, so the veil's tail is strengthened to carry the eye across
+     the join without a visible step. */
+  .chapter--period { background: #faf9f4; }
   .chapter--period .chapter__bg img { object-position: 78% 44%; }
   .chapter--period .chapter__veil {
-    background: linear-gradient(180deg, rgba(248, 245, 239, 0) 78%, rgba(239, 233, 223, 0.55) 100%);
+    background: linear-gradient(180deg, rgba(250, 249, 244, 0) 70%, rgba(250, 249, 244, 0.55) 88%, rgba(250, 249, 244, 0.94) 100%);
   }
 
   /* Stones: the stone fills the band, its own red carries the copy */
